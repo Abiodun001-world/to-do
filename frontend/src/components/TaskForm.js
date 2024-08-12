@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const TaskForm = () => {
-  const [task, setTask] = useState({ title: '', description: '', status: '', dueDate: '' });
+  const [task, setTask] = useState({
+    title: "",
+    description: "",
+    status: "",
+    dueDate: "",
+  });
   const navigate = useNavigate();
   const location = useLocation();
   const isEditing = location.state && location.state.task;
@@ -22,12 +27,12 @@ const TaskForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isEditing) {
-      axios.put(`http://localhost:3001/tasks/${task.id}`, task).then(() => {
-        navigate('/');
+      axios.put(`http://localhost:3001/api/tasks/${task.id}`, task).then(() => {
+        navigate("/");
       });
     } else {
-      axios.post('http://localhost:3001/tasks', task).then(() => {
-        navigate('/');
+      axios.post("http://localhost:3001/api/tasks", task).then(() => {
+        navigate("/");
       });
     }
   };
@@ -36,11 +41,20 @@ const TaskForm = () => {
     <form onSubmit={handleSubmit}>
       <div>
         <label>Title:</label>
-        <input type="text" name="title" value={task.title} onChange={handleChange} />
+        <input
+          type="text"
+          name="title"
+          value={task.title}
+          onChange={handleChange}
+        />
       </div>
       <div>
         <label>Description:</label>
-        <textarea name="description" value={task.description} onChange={handleChange}></textarea>
+        <textarea
+          name="description"
+          value={task.description}
+          onChange={handleChange}
+        ></textarea>
       </div>
       <div>
         <label>Status:</label>
@@ -52,9 +66,14 @@ const TaskForm = () => {
       </div>
       <div>
         <label>Due Date:</label>
-        <input type="date" name="dueDate" value={task.dueDate} onChange={handleChange} />
+        <input
+          type="date"
+          name="dueDate"
+          value={task.dueDate}
+          onChange={handleChange}
+        />
       </div>
-      <button type="submit">{isEditing ? 'Update' : 'Create'} Task</button>
+      <button type="submit">{isEditing ? "Update" : "Create"} Task</button>
     </form>
   );
 };
