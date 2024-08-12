@@ -24,7 +24,17 @@ export const getTask =
 export const createTask =
   ("/tasks",
   (req, res) => {
-    const task = { id: currentId++, ...req.body };
+    const { title, description, status, dueDate } = req.body;
+
+    // Validate required fields
+    if (!title || !description || !status || !dueDate) {
+      return res.status(400).json({
+        error:
+          "Missing required fields: title, description, status, and dueDate are required",
+      });
+    }
+
+    const task = { id: currentId++, title, description, status, dueDate };
     tasks.push(task);
     res.status(201).json(task);
   });
@@ -33,9 +43,25 @@ export const createTask =
 export const updateTask =
   ("/tasks/:id",
   (req, res) => {
+    const { title, description, status, dueDate } = req.body;
+
+    // Validate required fields
+    if (!title || !description || !status || !dueDate) {
+      return res.status(400).json({
+        error:
+          "Missing required fields: title, description, status, and dueDate are required",
+      });
+    }
+
     const index = tasks.findIndex((t) => t.id === parseInt(req.params.id));
     if (index !== -1) {
-      tasks[index] = { id: tasks[index].id, ...req.body };
+      tasks[index] = {
+        id: tasks[index].id,
+        title,
+        description,
+        status,
+        dueDate,
+      };
       res.json(tasks[index]);
     } else {
       res.status(404).send("Task not found");
