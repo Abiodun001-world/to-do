@@ -73,11 +73,11 @@ This is a simple To-Do List application that allows users to manage their tasks.
     ```
 
 ## API Endpoints
-- `GET /tasks`: Retrieve all tasks.
-- `GET /tasks/:id`: Retrieve a single task by ID.
-- `POST /tasks`: Create a new task.
-- `PUT /tasks/:id`: Update an existing task by ID.
-- `DELETE /tasks/:id`: Delete a task by ID.
+- `GET api/tasks`: Retrieve all tasks.
+- `GET api/tasks/:id`: Retrieve a single task by ID.
+- `POST api/tasks`: Create a new task.
+- `PUT api/tasks/:id`: Update an existing task by ID.
+- `DELETE api/tasks/:id`: Delete a task by ID.
 
 ## Testing the API with Postman
 
@@ -96,19 +96,19 @@ This is a simple To-Do List application that allows users to manage their tasks.
 
 4. **Add Requests to the Collection:**
 
-   - **Retrieve All Tasks (GET /tasks):**
+   - **Retrieve All Tasks (GET api/tasks):**
      - Method: GET
      - URL: `http://localhost:3001/tasks`
      - Click "Send" to test the endpoint.
 
-   - **Retrieve a Single Task (GET /tasks/:id):**
+   - **Retrieve a Single Task (GET api/tasks/:id):**
      - Method: GET
-     - URL: `http://localhost:3001/tasks/1` (replace `1` with the ID of a task you want to retrieve)
+     - URL: `http://localhost:3001/api/tasks/1` (replace `1` with the ID of a task you want to retrieve)
      - Click "Send" to test the endpoint.
 
-   - **Create a New Task (POST /tasks):**
+   - **Create a New Task (POST api/tasks):**
      - Method: POST
-     - URL: `http://localhost:3001/tasks`
+     - URL: `http://localhost:3001/api/tasks`
      - Body: Select "raw" and "JSON", then add the following JSON:
        ```json
        {
@@ -120,9 +120,9 @@ This is a simple To-Do List application that allows users to manage their tasks.
        ```
      - Click "Send" to create a new task.
 
-   - **Update a Task (PUT /tasks/:id):**
+   - **Update a Task (PUT api/tasks/:id):**
      - Method: PUT
-     - URL: `http://localhost:3001/tasks/1` (replace `1` with the ID of the task you want to update)
+     - URL: `http://localhost:3001/api/tasks/1` (replace `1` with the ID of the task you want to update)
      - Body: Select "raw" and "JSON", then add the following JSON:
        ```json
        {
@@ -134,7 +134,7 @@ This is a simple To-Do List application that allows users to manage their tasks.
        ```
      - Click "Send" to update the task.
 
-   - **Delete a Task (DELETE /tasks/:id):**
+   - **Delete a Task (DELETE api/tasks/:id):**
      - Method: DELETE
-     - URL: `http://localhost:3001/tasks/1` (replace `1` with the ID of the task you want to delete)
+     - URL: `http://localhost:3001/api/tasks/1` (replace `1` with the ID of the task you want to delete)
      - Click "Send" to delete the task.
