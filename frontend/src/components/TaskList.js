@@ -12,7 +12,7 @@ const TaskList = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/task`);
+        const response = await axios.get("https://to-do-evsr.onrender.com/api/task");
         
         setTasks(Array.isArray(response.data) ? response.data : []);
       } catch (err) {
@@ -27,7 +27,7 @@ const TaskList = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this task?")) {
       try {
-        await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/task${id}`);
+        await axios.delete("https://to-do-evsr.onrender.com/api/task${id}");
         setTasks(tasks.filter((task) => task.id !== id));
       } catch (err) {
         setError("Failed to delete task. Please try again later.");
