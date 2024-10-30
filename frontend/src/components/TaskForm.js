@@ -46,14 +46,14 @@ const TaskForm = () => {
     setLoading(true);
     try {
       if (isEditing) {
-        await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/task${task.id}`, task);
+        await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/task/${task.id}`, task);
       } else {
-        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}`, task);
+        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/task`, task);
       }
       navigate("/");
     } catch (error) {
-      console.error("There was an error submitting the form!", error);
-      setErrors({ submit: "There was an issue submitting the form." });
+      console.error("Error submitting form:", error.response?.data || error.message);
+      setErrors({ submit: error.response?.data?.message || "There was an issue submitting the form." });
     } finally {
       setLoading(false);
     }
