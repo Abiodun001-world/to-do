@@ -12,7 +12,7 @@ const TaskList = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/api/tasks");
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/task`);
         setTasks(response.data);
       } catch (err) {
         setError("Failed to fetch tasks. Please try again later.");
