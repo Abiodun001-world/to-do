@@ -13,7 +13,8 @@ const TaskList = () => {
     const fetchTasks = async () => {
       try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/task`);
-        setTasks(response.data);
+        
+        setTasks(Array.isArray(response.data) ? response.data : []);
       } catch (err) {
         setError("Failed to fetch tasks. Please try again later.");
       } finally {
@@ -26,7 +27,7 @@ const TaskList = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this task?")) {
       try {
-        await axios.delete(`http://localhost:3001/api/tasks/${id}`);
+        await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/task${id}`);
         setTasks(tasks.filter((task) => task.id !== id));
       } catch (err) {
         setError("Failed to delete task. Please try again later.");
@@ -50,7 +51,7 @@ const TaskList = () => {
     <div>
       <h2>Task List</h2>
       <button onClick={() => navigate("/new")}>Add Task</button>
-      {tasks.length === 0 ? (
+      {Array.isArray(tasks) && tasks.length === 0 ? (
         <p>No tasks available. Add a new task to get started!</p>
       ) : (
         tasks.map((task) => (
