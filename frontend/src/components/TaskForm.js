@@ -48,7 +48,7 @@ const TaskForm = () => {
       if (isEditing) {
         await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/task${task.id}`, task);
       } else {
-        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/`, task);
+        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}`, task);
       }
       navigate("/");
     } catch (error) {
