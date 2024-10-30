@@ -46,9 +46,9 @@ const TaskForm = () => {
     setLoading(true);
     try {
       if (isEditing) {
-        await axios.put(`http://localhost:3001/api/tasks/${task.id}`, task);
+        await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/task${task.id}`, task);
       } else {
-        await axios.post("http://localhost:3001/api/tasks", task);
+        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/task`, task);
       }
       navigate("/");
     } catch (error) {
