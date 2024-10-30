@@ -9,8 +9,14 @@ const port = 3001;
 
 // Body parser middleware
 app.use(bodyParser.json());
-app.use(cors());
 
+// Allow requests from your Vercel frontend URL
+const corsOptions = {
+  origin: 'https://to-do-gold-chi.vercel.app', 
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 // Routes
 app.use("/api/tasks", tasks);
 
