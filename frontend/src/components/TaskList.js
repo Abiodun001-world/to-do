@@ -12,7 +12,7 @@ const TaskList = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get("https://to-do-evsr.onrender.com/api/task");
+        const response = await axios.get(`${NEXT_PUBLIC_API_URL}/api/task`);
         
         setTasks(Array.isArray(response.data) ? response.data : []);
       } catch (err) {

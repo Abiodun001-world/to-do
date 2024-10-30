@@ -46,9 +46,9 @@ const TaskForm = () => {
     setLoading(true);
     try {
       if (isEditing) {
-        await axios.put(`https://to-do-evsr.onrender.com/api/task/${task.id}`, task);
+        await axios.put(`${NEXT_PUBLIC_API_URL}/api/task/${task.id}`, task);
       } else {
-        await axios.post("https://to-do-evsr.onrender.com", task);
+        await axios.post(`${NEXT_PUBLIC_API_URL}`, task);
       }
       navigate("/");
     } catch (error) {
