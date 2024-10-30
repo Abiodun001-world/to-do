@@ -48,7 +48,7 @@ const TaskForm = () => {
       if (isEditing) {
         await axios.put(`https://to-do-evsr.onrender.com/api/task/${task.id}`, task);
       } else {
-        await axios.post("https://to-do-evsr.onrender.com/api/task", task);
+        await axios.post("https://to-do-evsr.onrender.com", task);
       }
       navigate("/");
     } catch (error) {
